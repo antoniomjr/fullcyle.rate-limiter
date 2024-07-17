@@ -1,0 +1,35 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Binaries for programs and plugins
+bin/
+
+# Object files
+*.o
+*.a
+
+# Logging files
+*.log
+
+# Directory for compiled objects
+pkg/
+
+# Dependency directories (remove - if you're using vendoring)
+vendor/
+
+# JetBrains IDEs
+.idea/
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
