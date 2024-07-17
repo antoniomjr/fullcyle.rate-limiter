@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    environment:
+      DB_USERNAME: "your_username"
+      DB_PASSWORD: "your_password"
+      DB_ADMIN_EMAIL: "admin@example.com"
+    ports:
+      - "6379:6379"
