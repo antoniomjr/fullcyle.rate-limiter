@@ -23,18 +23,15 @@ func init() {
 
 func RateLimiterMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		//ip := r.RemoteAddr
 		token := r.Header.Get("API_KEY")
 
 		ctx := context.Background()
-		//maxRequestsPerSecondIP, _ := strconv.Atoi(os.Getenv("MAX_REQUESTS_PER_SECOND_IP"))
 		maxRequestsPerSecondToken, _ := strconv.Atoi(os.Getenv("MAX_REQUESTS_PER_SECOND_TOKEN"))
 		blockTimeSeconds, _ := strconv.Atoi(os.Getenv("BLOCK_TIME_SECONDS"))
 
 		var allowed bool
 		var err error
 
-		// Ensure that the token-based rate limiting logic is correctly applied
 		if token != "" {
 			allowed, err = rateLimiter.Allow(ctx, "token:"+token, maxRequestsPerSecondToken, time.Duration(blockTimeSeconds)*time.Second)
 		} else {

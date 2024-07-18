@@ -19,7 +19,7 @@ func main() {
 	r.Use(middleware.RateLimiterMiddleware)
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello, World!"))
+		w.Write([]byte("Hello world!"))
 	})
 
 	port := os.Getenv("PORT")
