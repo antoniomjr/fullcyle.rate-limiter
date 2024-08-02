@@ -22,19 +22,16 @@ To build and run this application, follow these steps:
 #### Running the Go application
 This will run the application
 ```bash
-docker-compose up -d
-
-go run main.go cep
+docker-compose up -build
 ```
 
 #### Request by terminal
 ```bash
 curl -s http://localhost:8080
-
-for i in {1..10}; do curl -s http://localhost:8080 & done
-
 ```
 with header: API_KEY:
 ```bash
-for i in {1..10}; do curl -H "API_KEY: your_token_here" http://localhost:8080 & done
+curl -H "API_KEY: your_token_here" http://localhost:8080 & done
 ```
+
+Conferir os logs no console do terminal.
