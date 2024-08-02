@@ -2,25 +2,29 @@ version: '3.8'
 
 services:
   redis:
-    image: redis:alpine
-    container_name: redis
-    environment:
-      DB_USERNAME: "your_username"
-      DB_PASSWORD: "your_password"
-      DB_ADMIN_EMAIL: "admin@example.com"
+    image: redis:latest
+    container_name: rate_limiter_redis
     ports:
       - "6379:6379"
+    env_file:
+      - .env
 
-  app:
+  rate_limiter_app:
     build: .
     container_name: rate_limiter_app
+    env_file:
+      - .env
     ports:
       - "8080:8080"
-    environment:
-      REDIS_ADDR: "redis:6379"
-      PORT: "8080"
-      MAX_REQUESTS_PER_SECOND_TOKEN: "5"
-      BLOCK_TIME_SECONDS: "60"
-      MAX_REQUESTS_PER_SECOND_IP: "10"
     depends_on:
       - redis
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-1
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - rate_limiter_app
