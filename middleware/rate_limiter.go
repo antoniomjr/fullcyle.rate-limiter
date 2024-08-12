@@ -62,7 +62,8 @@ func RateLimiterMiddleware(next http.Handler) http.Handler {
 			} else {
 				log.Println("Requisição bloqueada para: ip:", ip)
 			}
-			http.Error(w, "You have reached the maximum number of requests allowed within a certain time frame.", http.StatusTooManyRequests)
+			w.WriteHeader(http.StatusTooManyRequests)
+			w.Write([]byte("You have reached the maximum number of requests allowed within a certain time frame."))
 			return
 		}
 

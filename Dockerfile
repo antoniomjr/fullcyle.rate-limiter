@@ -18,4 +18,4 @@ COPY wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
 
 # Command to run the executable
-CMD ["/wait-for-it.sh", "redis", "--", "./main"]
+CMD ["/wait-for-it.sh", "redis:6379", "--", "./main"]
